@@ -26,11 +26,11 @@ Here is a sequence diagram that shows how to people would interact with the back
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - 
-- **CSS** -
-- **JavaScript** - 
+- **HTML** - Uses correct HTML structure for application. Four HTML pages. One for login, one for main menu, one for the game, and one for the leaderboard.
+- **CSS** - Styling that is readable and minimal as to not become too congested or distracting. Uses appealing color choices and scales to different sized screens.
+- **JavaScript** - Provides login, main menu functionality, and gameplay.
 - **Service** -
   - login
-- **DB/Login** - 
-- **WebSocket** - 
-- **React** - 
+- **DB/Login** - Stores users login info, scores, and stats. Login info is stored securily. 
+- **WebSocket** - Users are notified of other players activity and scores in real-time.
+- **React** - Application correctly ported to the React Framework.
