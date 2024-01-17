@@ -20,7 +20,7 @@ Here is a sequence diagram that shows how to people would interact with the back
 - Ability to play game at chosen difficulty
 - Display of leaderboards and fastest times for each difficulty
 - Notifications of players logging on and beating time records
-- high scores for each user stored
+- High scores for each user stored
 
 ### Technologies
 
