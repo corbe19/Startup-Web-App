@@ -6,11 +6,7 @@ Have you ever been bored while attending one of your CS classes and said to your
 
 ### Design
 
-"Input images when drawn"
-
-Here is a sequence diagram that shows how to people would interact with the backend to vote.
-
-"Input sequence diagram"
+![Mock](flipDesignDiagram.jpg)
 
 ### Key features
 
