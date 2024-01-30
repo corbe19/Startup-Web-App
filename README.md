@@ -32,3 +32,14 @@ I am going to use the required technologies in the following ways.
 - **DB/Login** - Stores users login info, scores, and stats. Login info is stored securily. 
 - **WebSocket** - Users are notified of other players activity and scores in real-time.
 - **React** - Application correctly ported to the React Framework.
+
+## HTML deliverable
+
+For this deliverable I built out the structure of my application using HTML.
+
+- **HTML pages** - 
+- **Links** - 
+- **Text** - 
+- **Images** - 
+- **DB/Login** - Login page with username and password. Leaderboard and user stats pulled from database.
+- **WebSocket** - Home page will display other user logins and scores real-time.
