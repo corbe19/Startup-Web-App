@@ -40,6 +40,6 @@ For this deliverable I built out the structure of my application using HTML.
 - **HTML pages** - 3 pages total, a home page, leaderboard page, and a page to play the game.
 - **Links** - Links will be on the top of each page to ensure consistency and ease of access.
 - **Text** - Text represented in navigation links, headers, and instructions
-- **Images** - 
+- **Images** - Image in the about section will be a random image from a 3rd party service.
 - **DB/Login** - Login page with username and password. Leaderboard and user stats pulled from database.
 - **WebSocket** - Home page will display other user logins and scores real-time.
