@@ -147,3 +147,33 @@ footer {
   background: rgb(86, 89, 93);
   border-radius: 5px;
 }
+
+.play-header {
+  flex: 1;
+  display: flex;
+  width: 100%;
+  padding: 0.25em;
+  justify-content: space-between;
+}
+
+.timer {
+  color:#f8b91b;
+}
+
+.name {
+  color:azure;
+}
+
+.difficulty {
+  color:#f8b91b;
+}
+
+.game {
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+  
+}
