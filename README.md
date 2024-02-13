@@ -43,3 +43,12 @@ For this deliverable I built out the structure of my application using HTML.
 - **Images** - Image in the about section will be a random image from a 3rd party service.
 - **DB/Login** - Login page with username and password. Leaderboard and user stats pulled from database.
 - **WebSocket** - Home page will display other user logins and scores real-time.
+
+## CSS deliverable
+
+- **Header, footer, and main content body**
+- **Navigation elements** - I made a navigation bar that is consitsant through all pages, interacts with the mouse, and highlights which page you are viewing.
+- **Responsive to window resizing** - Page resizes for all window/screen sizes.
+- **Application elements** - Found a good theme for colors that is readable and apealing
+- **Application text content** - Consistent fonts.
+- **Application images** - Specified bounds of image in the about page.
