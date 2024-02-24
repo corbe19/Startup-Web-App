@@ -18,6 +18,36 @@ body, html, .flipper, .f, .b, #g {width:100%;height:100%;}
 	     url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/60583/general_foundicons.svg#GeneralFoundicons") format("svg");
 }
 
+.players {
+	flex: 1;
+	width: 100% !important;
+	height: 100%;
+	padding: 0.5em;
+	font: status-bar;
+	font-size: 16px;
+  }
+  
+.player-name {
+	color: rgb(118, 190, 210);
+  }
+  
+#player-messages {
+	padding-top: 0.25em;
+	opacity: 0.7;
+  }
+  
+.event {
+	color: rgba(255, 255, 255, 0.804);
+  }
+  
+.player-event {
+	color: #16A085;
+  }
+  
+.system-event {
+	color: #C0392B;
+  }
+
 a {
 	text-decoration:none;
 	color:#fff;
