@@ -1,0 +1,45 @@
+html {
+    background:#333 !important;
+}
+
+
+body {
+    background-color: #333 !important;
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+  }
+  
+  header {
+    flex: 0 80px;
+  }
+  
+  main {
+    background-color: #333 !important;
+    flex: 1 calc(100vh - 110px);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .container-fluid  {
+    background-color: #333 !important;
+  }
+
+  .button {
+    background-color: #16A085; 
+    border: none;
+    color: white;
+    padding: 12px 26px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+
+  .button:hover {
+    background-color: #C0392B;
+  }
