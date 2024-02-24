@@ -9,6 +9,10 @@ $(function play(){
       if(nr == '-:-') return nr;
       else { var n = ' '+nr/1000+' '; return n.substr(0, n.length-1)+'s'; }
     };
+
+    function getPlayerName() {
+      return localStorage.getItem('userName') ?? 'Mystery player';
+    }
   
     function updateStats(){
       $('#stats').html('<div class="padded"><h2>Figures: <span>'+
