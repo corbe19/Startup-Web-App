@@ -4,28 +4,51 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="lb.css" />
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <title>Flip - Card Memory Game</title>
     </head>
+
+    <script>
+        function redirectToPage(targetPage) {
+       window.location.href = targetPage;
+      }
+     </script>
+
     <body>
         <header>
         <h1>Leaderboard</h1>
+
     </header>
 
+    <div class="arrow" onclick="redirectToPage('home.html')">
+        <span></span>
+    </div>
+
     <main>
+        <p>*Only times from "Casual" difficulty are shown.*</p>
+
+        <div class="players">
+            <span class="player-name"></span>
+            <div id="player-messages">
+              <div class="event"><span class="player-event">gojo</span> scored 22.34 seconds!</div>
+              <div class="event"><span class="player-event">noobmast11</span> started a new game</div>
+              <div class="event"><span class="system-event">game</span> connected</div>
+            </div>
+          </div>
 
         <table id="players">
+            <thead>
             <tr>
                 <td>Rank</td>
                 <td>User</td>
                 <td>Time</td>
               </tr>
+            </thead>
               <tbody id="scores"></tbody>
         </table>
-
+        <script src="lb.js" type="text/javascript"></script>
+        <script src="script.js" type="text/javascript"></script>
     </main>
-        <footer>
-                <p>Author <a href="https://github.com/corbe19">Github</a></p>
-        </footer>
-        </body>
+</body>
 
     </html>
