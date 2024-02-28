@@ -52,3 +52,13 @@ For this deliverable I built out the structure of my application using HTML.
 - **Application elements** - Found a good theme for colors that is readable and apealing
 - **Application text content** - Consistent fonts.
 - **Application images** - Specified bounds of image in the about page.
+
+## JavaScript deliverable
+
+For this deliverable I implemented JavaScript so that the application works for a single user. I also added placeholders for future technology.
+
+- **login** - When you press enter or the login button it takes you to the home page.
+- **database** - Displayed the leaderboard with username and time. Currently this is stored and retrieved from local storage, but it will be replaced with the database data later.
+- **WebSocket** - I used the setInterval function to periodically increase a random status event. This will be replaced with WebSocket messages later.
+- **application logic** - The memory card game works smoothley and the home page functions.
+
