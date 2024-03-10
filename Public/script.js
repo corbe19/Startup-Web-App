@@ -25,9 +25,51 @@ $(function play(){
         '<ul><li><b>Total Flips:</b> <span>'+parseInt( ( parseInt(get('flip_matched')) + parseInt(get('flip_wrong')) ) * 2)+'</span></li>'+
         '<li><b>Matched Flips:</b> <span>'+get('flip_matched')+'</span></li>'+
         '<li><b>Wrong Flips:</b> <span>'+get('flip_wrong')+'</span></li></ul></div>');
+
     };
 
+    function saveScore(score) {
+      const userName = getPlayerName();
+      let scores = [];
+      const scoresText = localStorage.getItem('scores');
+      if (scoresText) {
+        scores = JSON.parse(scoresText);
+      }
+      scores = updateScores(userName, score, scores);
   
+      localStorage.setItem('scores', JSON.stringify(scores));
+    }
+
+    function updateScores(userName, score, scores) {
+
+      // If scores is undefined, initialize it as an empty array
+      scores = scores || [];
+
+      const newScore = { name: userName, score: score };
+    
+      let found = false;
+      for (let i = 0; i < scores.length; i++) {
+        const prevScore = scores[i];
+        if (score < prevScore.score) {
+          scores.splice(i, 0, newScore);
+          found = true;
+          break;
+        }
+      }
+    
+      if (!found) {
+        scores.push(newScore);
+      }
+    
+      // Only 10 people on Leaderboard max
+      if (scores.length > 10) {
+        scores.length = 10;
+      }
+    
+      return scores;
+    }
+  
+
     function shuffle(array) {
       var currentIndex = array.length, temporaryValue, randomIndex;
       while (0 !== currentIndex) {
@@ -61,7 +103,7 @@ $(function play(){
         decrease('flip_abandoned');
       }
   
-      // Update stats
+      // Update stats and Leadeboard
       updateStats();
     };
   
@@ -157,6 +199,11 @@ $(document).on('click', '.logo .card:not(".twist")', function(e) {
                     var time = $.now() - startGame;
                     if( get('flip_'+difficulty) == '-:-' || get('flip_'+difficulty) > time ){
                       set('flip_'+difficulty, time); // increase best score
+                    }
+
+                    if (difficulty == 'casual'){
+                      saveScore(time);
+                      updateScores();
                     }
   
                     startScreen('nice');

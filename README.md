@@ -62,3 +62,12 @@ For this deliverable I implemented JavaScript so that the application works for 
 - **WebSocket** - I used the setInterval function to periodically increase a random status event. This will be replaced with WebSocket messages later.
 - **application logic** - The memory card game works smoothley and the home page functions.
 
+## Service deliverable
+
+For this deliverable I added backend endpoints that receives votes and returns the voting totals.
+
+- **Node.js/Express HTTP service** - done!
+- **Static middleware for frontend** - done!
+- **Calls to third party endpoints** - Quote and image calls.
+- **Backend service endpoints** - Placeholders for login that stores the current user on the server. Endpoints for scores.
+- **Frontend calls service endpoints** - I did this using the fetch function.
