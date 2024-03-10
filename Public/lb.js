@@ -1,10 +1,20 @@
-function loadScores() {
-    let scores = [];
+async function loadScores() {
+  try {
+    const response = await fetch('/api/scores');
+    scores = await response.json();
+
+    localStorage.setItem('scores', JSON.stringify(scores));
+  } catch {
     const scoresText = localStorage.getItem('scores');
     if (scoresText) {
       scores = JSON.parse(scoresText);
     }
+  }
+
+  displayScores(scores);
+}
   
+function displayScores(scores) {
     const tableBodyEl = document.querySelector('#scores');
   
     if (scores.length) {
@@ -27,7 +37,8 @@ function loadScores() {
     } else {
       tableBodyEl.innerHTML = '<tr><td colSpan=4>Be the first to score</td></tr>';
     }
-  }
+}
+
   
   loadScores();
 
