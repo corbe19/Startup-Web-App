@@ -28,19 +28,32 @@ $(function play(){
 
     };
 
-    function saveScore(score) {
-      const userName = getPlayerName();
-      let scores = [];
-      const scoresText = localStorage.getItem('scores');
-      if (scoresText) {
-        scores = JSON.parse(scoresText);
-      }
-      scores = updateScores(userName, score, scores);
-  
-      localStorage.setItem('scores', JSON.stringify(scores));
+    function updateScore(score) {
+      const scoreEl = document.querySelector('#score');
+      scoreEl.textContent = score;
     }
 
-    function updateScores(userName, score, scores) {
+    async function saveScore(score) {
+      const userName = getPlayerName();
+      const newScore = {name: userName, score: score};
+  
+      try {
+        const response = await fetch('/api/score', {
+          method: 'POST',
+          headers: {'content-type': 'application/json'},
+          body: JSON.stringify(newScore),
+        });
+
+         // Store what the service gave as the high scores
+      const scores = await response.json();
+      localStorage.setItem('scores', JSON.stringify(scores));
+    } catch {
+      // If there was an error then just track scores locally
+      updateScoresLocal(newScore);
+    }
+  }
+
+    function updateScoresLocal(userName, score, scores) {
 
       // If scores is undefined, initialize it as an empty array
       scores = scores || [];
@@ -200,13 +213,13 @@ $(document).on('click', '.logo .card:not(".twist")', function(e) {
                     if( get('flip_'+difficulty) == '-:-' || get('flip_'+difficulty) > time ){
                       set('flip_'+difficulty, time); // increase best score
                     }
+  
+                    startScreen('nice');
 
                     if (difficulty == 'casual'){
                       saveScore(time);
-                      updateScores();
+                      updateScore();
                     }
-  
-                    startScreen('nice');
                   }
                 }
                 else {
