@@ -1,0 +1,16 @@
+{
+  "name": "flip-startup",
+  "version": "1.0.0",
+  "description": "flip main package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "corbe19",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.2.10",
+    "ws": "^8.5.0"
+  }
+}
