@@ -4,7 +4,6 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="login.css" />
-        <script src="login.js"></script>
         <title>Flip - Card Memory Game</title>
     </head>
 
@@ -20,9 +19,20 @@
         <div>
           <h1>Welcome</h1>
           <p>Login to play</p>
+          <div id="loginControls" style="display: none">
+            <input type="text" id="userName" placeholder="your@email.com" />
+            <input type="password" id="userPassword" placeholder="password" />
+            <button class="button" onclick="loginUser()">Login</button>
           <div>
-            <input type="text" id="name" placeholder="Your name here" />
-            <button class="button" onclick="login()">Login</button>
+            <p>Don't have an acount?</p>
+            <button class="button" onclick="createUser()">Create</button>
+          </div>
+          </div>
+          <div id="playControls" style="display: none">
+            <div id="playerName"></div>
+            <button class="button" onclick="play()">Play</button>
+            <button class="button" onclick="logout()">Logout</button>
           </div>
         </div>
+        <script src="login.js"></script>
       </main>
