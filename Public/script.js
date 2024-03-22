@@ -53,34 +53,32 @@ $(function play(){
     }
   }
 
-    function updateScoresLocal(userName, score, scores) {
-
-      // If scores is undefined, initialize it as an empty array
-      scores = scores || [];
-
-      const newScore = { name: userName, score: score };
-    
-      let found = false;
-      for (let i = 0; i < scores.length; i++) {
-        const prevScore = scores[i];
-        if (score < prevScore.score) {
-          scores.splice(i, 0, newScore);
-          found = true;
-          break;
-        }
-      }
-    
-      if (!found) {
-        scores.push(newScore);
-      }
-    
-      // Only 10 people on Leaderboard max
-      if (scores.length > 10) {
-        scores.length = 10;
-      }
-    
-      return scores;
+  function updateScoresLocal(newScore) {
+    let scores = [];
+    const scoresText = localStorage.getItem('scores');
+    if (scoresText) {
+      scores = JSON.parse(scoresText);
     }
+
+    let found = false;
+    for (const [i, prevScore] of scores.entries()) {
+      if (newScore > prevScore.score) {
+        scores.splice(i, 0, newScore);
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) {
+      scores.push(newScore);
+    }
+
+    if (scores.length > 10) {
+      scores.length = 10;
+    }
+
+    localStorage.setItem('scores', JSON.stringify(scores));
+  }
   
 
     function shuffle(array) {
