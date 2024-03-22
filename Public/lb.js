@@ -1,4 +1,5 @@
 async function loadScores() {
+  let scores = [];
   try {
     const response = await fetch('/api/scores');
     scores = await response.json();
