@@ -34,10 +34,9 @@ async function loginOrCreate(endpoint) {
     window.location.href = 'home.html';
   } else {
     const body = await response.json();
-    const modalEl = document.querySelector('#msgModal');
-    modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
-    const msgModal = new bootstrap.Modal(modalEl, {});
-    msgModal.show();
+    const errorMessage = body.errorMessage || 'An error occurred, please try again.';
+    const errorElement = document.querySelector('#errorMessage');
+    errorElement.textContent = errorMessage;
   }
 }
 
