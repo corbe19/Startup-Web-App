@@ -43,3 +43,13 @@ body {
   .button:hover {
     background-color: #C0392B;
   }
+
+  footer {
+    flex: 0 30px;
+  }
+
+  #playerName {
+    color: #16A085;
+    font-size: 1.5em;
+    padding: 0.5em;
+  }
