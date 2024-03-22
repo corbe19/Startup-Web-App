@@ -71,3 +71,14 @@ For this deliverable I added backend endpoints that receives votes and returns t
 - **Calls to third party endpoints** - Quote and image calls.
 - **Backend service endpoints** - Placeholders for login that stores the current user on the server. Endpoints for scores.
 - **Frontend calls service endpoints** - I did this using the fetch function.
+
+## DB/Login deliverable
+
+For this deliverable I associate the votes with the logged in user. I stored the votes in the database.
+
+- **MongoDB Atlas database created** - done!
+- **Stores data in MongoDB** - done!
+- **User registration** - Creates a new account in the database.
+- **existing user** - Stores the score under the same user if the user already exists.
+- **Use MongoDB to store credentials** - Stores both user and their scores.
+- **Restricts functionality** - You cannot play until you have logged in.
