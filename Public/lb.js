@@ -1,53 +1,76 @@
-async function loadScores() {
-  let scores = [];
-  try {
-    const response = await fetch('/api/scores');
-    scores = await response.json();
+const GameEndEvent = 'gameEnd';
+const GameStartEvent = 'gameStart';
 
-    localStorage.setItem('scores', JSON.stringify(scores));
-  } catch {
-    const scoresText = localStorage.getItem('scores');
-    if (scoresText) {
-      scores = JSON.parse(scoresText);
+class Game {
+    constructor() {
+        this.configureWebSocket(); // Automatically set up WebSocket connection
     }
-  }
 
-  displayScores(scores);
-}
-  
-function displayScores(scores) {
-    const tableBodyEl = document.querySelector('#scores');
-  
-    if (scores.length) {
-      for (const [i, score] of scores.entries()) {
-        const positionTdEl = document.createElement('td');
-        const nameTdEl = document.createElement('td');
-        const scoreTdEl = document.createElement('td');
-  
-        positionTdEl.textContent = i + 1;
-        nameTdEl.textContent = score.name;
-        scoreTdEl.textContent = score.score;
-  
-        const rowEl = document.createElement('tr');
-        rowEl.appendChild(positionTdEl);
-        rowEl.appendChild(nameTdEl);
-        rowEl.appendChild(scoreTdEl);
-        
-        tableBodyEl.appendChild(rowEl);
-      }
-    } else {
-      tableBodyEl.innerHTML = '<tr><td colSpan=4>Be the first to score</td></tr>';
+    async loadScores() {
+        let scores = [];
+        try {
+            const response = await fetch('/api/scores');
+            scores = await response.json();
+            localStorage.setItem('scores', JSON.stringify(scores));
+        } catch {
+            const scoresText = localStorage.getItem('scores');
+            if (scoresText) {
+                scores = JSON.parse(scoresText);
+            }
+        }
+        this.displayScores(scores);
+    }
+
+    displayScores(scores) {
+        const tableBodyEl = document.querySelector('#scores');
+        tableBodyEl.innerHTML = ''; // Clear existing scores
+
+        if (scores.length) {
+            scores.forEach((score, i) => {
+                const rowEl = document.createElement('tr');
+                rowEl.innerHTML = `<td>${i + 1}</td><td>${score.name}</td><td>${score.score}</td>`;
+                tableBodyEl.appendChild(rowEl);
+            });
+        } else {
+            tableBodyEl.innerHTML = '<tr><td colspan="3">Be the first to score!</td></tr>';
+        }
+    }
+
+    configureWebSocket() {
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+
+        this.socket.onopen = () => {
+            console.log('WebSocket connected.');
+        };
+
+        this.socket.onclose = () => {
+            console.log('WebSocket disconnected.');
+        };
+
+        this.socket.onmessage = async (event) => {
+            const msg = JSON.parse(event.data);
+            if (msg.type === GameEndEvent) {
+                this.displayMsg('player', msg.from, `scored ${msg.value.score}`);
+                this.loadScores(); // Reload scores to display the updated scores
+            } else if (msg.type === GameStartEvent) {
+                this.displayMsg('player', msg.from, 'started a new game');
+            }
+        };
+    }
+
+    displayMsg(cls, from, msg) {
+        const chatText = document.querySelector('#player-messages');
+        chatText.innerHTML = `<div class="${cls}-event"><span>${from}</span> ${msg}</div>` + chatText.innerHTML;
+    }
+
+    broadcastEvent(from, type, value) {
+        const event = { from, type, value };
+        this.socket.send(JSON.stringify(event));
     }
 }
 
-  
-  loadScores();
+// Usage
+const game = new Game();
+game.loadScores(); // To load and display scores initially
 
-  // Simulate chat messages that will come over WebSocket
-setInterval(() => {
-  const score = Math.floor(Math.random() * 3000);
-  const chatText = document.querySelector('#player-messages');
-  chatText.innerHTML =
-    `<div class="event"><span class="player-event">LucasCorbetto</span> scored ${score}</div>` +
-    chatText.innerHTML;
-}, 5000);
