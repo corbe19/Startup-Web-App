@@ -82,3 +82,12 @@ For this deliverable I associate the votes with the logged in user. I stored the
 - **existing user** - Stores the score under the same user if the user already exists.
 - **Use MongoDB to store credentials** - Stores both user and their scores.
 - **Restricts functionality** - You cannot play until you have logged in.
+
+## WebSocket deliverable
+
+For this deliverable I used webSocket to update the votes on the frontend in realtime.
+
+- **Backend listens for WebSocket connection** - done!
+- **Frontend makes WebSocket connection** - done!
+- **Data sent over WebSocket connection** - done!
+- **WebSocket data displayed** - Displays message to leaderboard when another player connects to the leaderboard page. Yay!
