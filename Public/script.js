@@ -35,22 +35,25 @@ $(function play(){
 
     async function saveScore(score) {
       const userName = getPlayerName();
-      const newScore = {name: userName, score: score};
+      const newScore = { name: userName, score: score };
   
       try {
-        const response = await fetch('/api/score', {
-          method: 'POST',
-          headers: {'content-type': 'application/json'},
-          body: JSON.stringify(newScore),
-        });
-
-         // Store what the service gave as the high scores
-      const scores = await response.json();
-      localStorage.setItem('scores', JSON.stringify(scores));
-    } catch {
-      // If there was an error then just track scores locally
-      updateScoresLocal(newScore);
-    }
+          const response = await fetch('/api/score', {
+              method: 'POST',
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify(newScore),
+          });
+  
+          // Store what the service gave as the high scores
+          const scores = await response.json();
+          localStorage.setItem('scores', JSON.stringify(scores));
+  
+          // Send WebSocket message for game end
+          broadcastEvent('player', 'gameEnd', { score: score });
+      } catch {
+          // If there was an error then just track scores locally
+          updateScoresLocal(newScore);
+      }
   }
 
   function updateScoresLocal(newScore) {
