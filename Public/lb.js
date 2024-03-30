@@ -1,10 +1,15 @@
-const GameEndEvent = 'gameEnd';
-const GameStartEvent = 'gameStart';
-
 class Game {
+    socket;
     constructor() {
+        this.userName = this.getPlayerName(); 
+        const playerNameEl = document.querySelector('.player-name');
+        playerNameEl.textContent = this.getPlayerName();
         this.configureWebSocket(); // Automatically set up WebSocket connection
     }
+
+    getPlayerName() {
+        return localStorage.getItem('userName') ?? 'Mystery player';
+      }
 
     async loadScores() {
         let scores = [];
@@ -23,7 +28,7 @@ class Game {
 
     displayScores(scores) {
         const tableBodyEl = document.querySelector('#scores');
-        tableBodyEl.innerHTML = ''; // Clear existing scores
+        tableBodyEl.innerHTML = '';
 
         if (scores.length) {
             scores.forEach((score, i) => {
@@ -39,30 +44,55 @@ class Game {
     configureWebSocket() {
         const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
         this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
-
+    
         this.socket.onopen = () => {
             console.log('WebSocket connected.');
+            // Broadcast that the user has connected, as before
+            this.broadcastEvent(this.userName, 'UserConnected', { message: `${this.userName} has connected.` });
         };
-
+    
         this.socket.onclose = () => {
             console.log('WebSocket disconnected.');
         };
-
+    
         this.socket.onmessage = async (event) => {
-            const msg = JSON.parse(event.data);
-            if (msg.type === GameEndEvent) {
-                this.displayMsg('player', msg.from, `scored ${msg.value.score}`);
-                this.loadScores(); // Reload scores to display the updated scores
-            } else if (msg.type === GameStartEvent) {
-                this.displayMsg('player', msg.from, 'started a new game');
+            let msg;
+            if (event.data instanceof Blob) {
+                const text = await event.data.text();
+                try {
+                    msg = JSON.parse(text);
+                } catch (e) {
+                    console.error('Failed to parse the message as JSON:', text);
+                    return;
+                }
+            } else {
+                try {
+                    msg = JSON.parse(event.data);
+                } catch (e) {
+                    console.error('Failed to parse the message as JSON:', event.data);
+                    return;
+                }
             }
+        
+            if (msg.type === 'UserConnected') {
+                // Use displayMsg to insert the 'UserConnected' event into the page
+                // Assuming `msg.from` is the username and `msg.message` is the text to display
+                // If your message structure is different, adjust the properties accordingly
+                this.displayMsg('player-event', msg.from, 'connected');
+            }
+            // Add more conditions here for other message types you might be interested in
         };
     }
+        
 
     displayMsg(cls, from, msg) {
         const chatText = document.querySelector('#player-messages');
-        chatText.innerHTML = `<div class="${cls}-event"><span>${from}</span> ${msg}</div>` + chatText.innerHTML;
+        const messageElement = document.createElement('div');
+        messageElement.className = cls; // This applies the CSS class for styling
+        messageElement.innerHTML = `<span> ${from}</span> ${msg}`;
+        chatText.prepend(messageElement); // Use prepend to add the new message at the top
     }
+    
 
     broadcastEvent(from, type, value) {
         const event = { from, type, value };
@@ -73,4 +103,3 @@ class Game {
 // Usage
 const game = new Game();
 game.loadScores(); // To load and display scores initially
-
