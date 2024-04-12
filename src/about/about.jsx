@@ -41,9 +41,6 @@ export function About(props) {
 
     </header>
 
-    <div className="arrow" onclick="redirectToPage('home.html')">
-        <span></span>
-    </div>
             <main>
                 <div id="picture" className="picture-box">
                     {imgEl}
