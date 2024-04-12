@@ -1,12 +1,10 @@
 import React from 'react';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
-import { Home } from './home';
-//import { Scores } from './scores/scores';
 import { About } from './about/about';
 import { AuthState } from './login/authState';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './app.css';
+import './login.css';
 
 function App() {
   const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
@@ -18,9 +16,6 @@ function App() {
       <div className='body bg-dark text-light'>
         <header className='container-fluid'>
           <nav className='navbar fixed-top navbar-dark'>
-            <div className='navbar-brand'>
-              Flip<sup>&reg;</sup>
-            </div>
             <menu className='navbar-nav'>
               <li className='nav-item'>
                 <NavLink className='nav-link' to=''>
@@ -28,12 +23,12 @@ function App() {
                 </NavLink>
               </li>
               {authState === AuthState.Authenticated && (
-                <li className='nav-item'>
-                  <NavLink className='nav-link' to='home'>
-                    Home
-                  </NavLink>
-                </li>
-              )}
+              <li className='nav-item'>
+                <a href="src/home.html" className='nav-link'>
+                  Home
+                </a>
+              </li>
+               )}
               <li className='nav-item'>
                 <NavLink className='nav-link' to='about'>
                   About
@@ -58,19 +53,9 @@ function App() {
             }
             exact
           />
-          <Route path='/home' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
-
-        <footer className='bg-dark text-dark text-muted'>
-          <div className='container-fluid'>
-            <span className='text-reset'>Author Name(s)</span>
-            <a className='text-reset' href='https://github.com/webprogramming260/simon-react'>
-              Source
-            </a>
-          </div>
-        </footer>
       </div>
     </BrowserRouter>
   );
