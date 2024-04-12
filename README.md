@@ -91,3 +91,12 @@ For this deliverable I used webSocket to update the votes on the frontend in rea
 - **Frontend makes WebSocket connection** - done!
 - **Data sent over WebSocket connection** - done!
 - **WebSocket data displayed** - Displays message to leaderboard when another player connects to the leaderboard page. Yay!
+
+## React deliverable
+
+For this deliverable I converted the application over to use Vue. I know it is supposed to use React, but the instructor said I could use Vue because I already have extensive experience with React.
+
+ - **Bundled and transpiled** - done!
+ - **Components** - Login and About are components.
+ - **Router** - Routing between login, home, and about.
+ - **Hooks** - Used hoooks for Login and About!
