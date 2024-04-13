@@ -94,7 +94,7 @@ For this deliverable I used webSocket to update the votes on the frontend in rea
 
 ## React deliverable
 
-For this deliverable I converted the application over to use Vue. I know it is supposed to use React, but the instructor said I could use Vue because I already have extensive experience with React.
+For this deliverable I converted the application over to use React.
 
  - **Bundled and transpiled** - done!
  - **Components** - Login and About are components.
