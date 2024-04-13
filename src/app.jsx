@@ -24,7 +24,7 @@ function App() {
               </li>
               {authState === AuthState.Authenticated && (
               <li className='nav-item'>
-                <a href="src/home.html" className='nav-link'>
+                <a href="home.html" className='nav-link'>
                   Home
                 </a>
               </li>
@@ -58,6 +58,7 @@ function App() {
         </Routes>
       </div>
     </BrowserRouter>
+
   );
 }
 

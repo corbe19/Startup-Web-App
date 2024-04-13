@@ -17,16 +17,22 @@ export function Authenticated(props) {
         localStorage.removeItem('userName');
         props.onLogout();
       });
+
+  }
+
+  function play() {
+    window.location.href = 'home.html';
   }
 
   return (
     <div>
       <div className='playerName'>{props.userName}</div>
-      <button className='button' onClick={() => navigate('src/home.html')}>
+      <button className='button' onClick={() => play()}>
         Play
       </button>
       <br></br>
-      <button variant='secondary' onClick={() => logout()}>
+      <br></br>
+      <button className='button' onClick={() => logout()}>
         Logout
       </button>
     </div>
