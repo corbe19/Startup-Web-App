@@ -64,8 +64,6 @@ For this deliverable I implemented JavaScript so that the application works for 
 
 ## Service deliverable
 
-For this deliverable I added backend endpoints that receives votes and returns the voting totals.
-
 - **Node.js/Express HTTP service** - done!
 - **Static middleware for frontend** - done!
 - **Calls to third party endpoints** - Quote and image calls.
@@ -74,7 +72,7 @@ For this deliverable I added backend endpoints that receives votes and returns t
 
 ## DB/Login deliverable
 
-For this deliverable I associate the votes with the logged in user. I stored the votes in the database.
+For this deliverable I associate scores with specific users. The scores are stored in the database.
 
 - **MongoDB Atlas database created** - done!
 - **Stores data in MongoDB** - done!
@@ -85,7 +83,7 @@ For this deliverable I associate the votes with the logged in user. I stored the
 
 ## WebSocket deliverable
 
-For this deliverable I used webSocket to update the votes on the frontend in realtime.
+For this deliverable I used webSocket to alert users of other players connecting.
 
 - **Backend listens for WebSocket connection** - done!
 - **Frontend makes WebSocket connection** - done!
